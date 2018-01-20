@@ -1,0 +1,11 @@
+.Block__root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 50vh;
+}
+
+.Block__root:nth-child(odd) {
+  background: #202020;
+}
