@@ -2060,9 +2060,9 @@ duplexer@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
 
-dwindler@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/dwindler/-/dwindler-0.2.0.tgz#4c29feb5b3ff768557a39f53362b7745c4a528e5"
+dwindler@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/dwindler/-/dwindler-0.2.1.tgz#96dda32b59c4f2dd9d656c65d2c635835f2c0a6e"
   dependencies:
     ramda "^0.25.0"
 

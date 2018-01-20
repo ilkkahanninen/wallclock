@@ -4,7 +4,7 @@ import { addHours } from 'date-fns';
 import { lensPath, view, last } from 'ramda';
 
 const API_KEY = process.env.REACT_APP_FMI_API_KEY;
-const URL = `http://data.fmi.fi/fmi-apikey/${API_KEY}/wfs`;
+const URL = `https://data.fmi.fi/fmi-apikey/${API_KEY}/wfs`;
 const OBSERVATION = 'fmi::observations::weather::multipointcoverage';
 // const FORECAST = 'fmi::forecast::hirlam::surface::point::multipointcoverage';
 
