@@ -11,7 +11,8 @@ const neutralPair = (n, icon) => ({
 });
 
 const iconMap = {
-  ...dayNightPair('01', 'sunny'),
+  '01d': 'day-sunny',
+  '01n': 'night-clear',
   ...dayNightPair('02', 'cloudy'),
   ...neutralPair('03', 'cloud'),
   ...neutralPair('04', 'cloudy'),
