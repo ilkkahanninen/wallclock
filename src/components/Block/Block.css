@@ -6,6 +6,10 @@
   height: 50vh;
 }
 
-.Block__root:nth-child(odd) {
-  background: #202020;
+.Block__vertical {
+  flex-direction: row;
+}
+
+.Block__root:nth-child(even) {
+  /* background: #111; */
 }

@@ -1,4 +1,18 @@
 .Weather__temperature {
-  font-size: 120px;
-  font-weight: 100;
+  font-size: 160px;
+}
+
+.Weather__icon {
+  display: block;
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.Weather__forecast {
+  font-size: 24px;
+}
+
+.Weather__forecast_value {
+  font-weight: 500;
+  margin-bottom: 5px;
 }

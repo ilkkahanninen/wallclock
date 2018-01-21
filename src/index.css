@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:100+300');
+@import url('https://fonts.googleapis.com/css?family=Rubik:300,500');
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 100;
   background: black;
   color: white;
-  font-weight: 300;
 }

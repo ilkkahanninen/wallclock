@@ -14,4 +14,5 @@ const runTimer = (fn, msecs) => {
 };
 
 runTimer(actions.clock.updateTime, 1000);
-runTimer(() => actions.weather.getObservations('Kokkola'), 10 * 60000);
+runTimer(() => actions.weather.getObservations('Kokkola'), 15 * 60000);
+runTimer(() => actions.weather.getForecast('Kokkola'), 30 * 60000);
