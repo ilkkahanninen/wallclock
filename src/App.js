@@ -7,7 +7,6 @@ const App = () => (
   <div>
     <Block height={1} />
     <Clock />
-    <Block height={1} />
     <Weather />
   </div>
 );

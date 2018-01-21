@@ -6,15 +6,12 @@ import Block from '../Block';
 import './Weather.css';
 import './weather-icons.css';
 
-const CELSIUS = '°C';
-
-const formatTemp = kelvin => `${parseFloat(kelvin).toFixed(1)}°C`;
-const kelvinToCelsius = kelvin => kelvin - 273.15;
+const kToC = kelvin => kelvin - 273.15;
 
 export const Weather = ({ temperature, forecast }) => (
   <Fragment>
     <Block height={3} className="Weather__temperature">
-      {temperature != null ? formatTemp(temperature + CELSIUS) : '–'}
+      {temperature != null ? `${parseFloat(temperature).toFixed(1)}°C` : '–'}
     </Block>
     <Block height={3} vertical>
       {forecast &&
@@ -27,7 +24,7 @@ export const Weather = ({ temperature, forecast }) => (
           >
             <WeatherIcon icon={item.weather[0].icon} />
             <div className="Weather__forecast_value">
-              {formatTemp(kelvinToCelsius(item.main.temp))}
+              {Math.round(kToC(item.main.temp))}°C
             </div>
             <div>{format(item.dt * 1000, 'HH:mm')}</div>
           </Block>

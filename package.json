@@ -16,8 +16,8 @@
   "scripts": {
     "start": "react-scripts start",
     "predeploy": "npm run build",
-    "deploy": "cd build && now --public --name wallclock",
-    "build": "react-scripts build",
+    "deploy": "aws s3 sync build s3://seinaekello",
+    "build": "REACT_APP_VERSION=$(date +%F_%T) react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
