@@ -1,0 +1,18 @@
+.Carousel__root {
+  position: relative;
+}
+
+.Carousel__root > * {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 1000ms;
+}
+
+.Carousel__activeComponent {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -25,26 +25,30 @@ const iconMap = {
 
 const getColor = code => {
   switch (code) {
-    case '01d': // Sunny day
+    // Sunny day
+    case '01d':
       return '#FFEB3B';
-    case '09d': // Rain
+    // Rain
+    case '09d':
     case '09n':
     case '10d':
     case '10n':
     case '11d':
     case '11n':
       return '#2196F3';
-    case '13d': // Snow
+    // Snow
+    case '13d':
     case '13n':
-      return '#00BCD4';
-    default: // Default
+      return 'white';
+    // Default
+    default:
       return '#90A4AE';
   }
 };
 
 const WeatherIcon = ({ icon }) => (
   <i
-    className={`Weather__icon wi wi-${iconMap[icon] || icon}`}
+    className={`Forecast__icon wi wi-${iconMap[icon] || icon}`}
     style={{ color: getColor(icon) }}
   />
 );
