@@ -16,3 +16,8 @@
   font-weight: 500;
   margin-bottom: 5px;
 }
+
+.Weather__forecast_time {
+  font-weight: 100;
+  font-size: 40px;
+}
