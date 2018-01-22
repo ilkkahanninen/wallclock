@@ -4,6 +4,7 @@
   align-items: center;
   flex-direction: column;
   height: 50vh;
+  box-sizing: border-box;
 }
 
 .Block__vertical {

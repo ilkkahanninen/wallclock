@@ -5,7 +5,7 @@ const Block = ({ className, children, vertical, width, height, ...rest }) => (
   <div
     className={`Block__root ${vertical ? 'Block__vertical' : ''} ${className || ''}`}
     style={{
-      width: `${width * 100 / 12}%`,
+      width: `${width * 100 / 12}vw`,
       height: `${height * 100 / 12}vh`,
     }}
     {...rest}

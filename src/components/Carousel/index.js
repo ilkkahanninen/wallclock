@@ -9,7 +9,7 @@ class Carousel extends React.Component {
   componentDidMount() {
     this.interval = setInterval(
       () => this.setState({ index: this.state.index + 1 }),
-      10000,
+      15000,
     );
   }
 

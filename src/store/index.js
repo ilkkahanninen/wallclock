@@ -13,6 +13,14 @@ const runTimer = (fn, msecs) => {
   return setInterval(fn, msecs);
 };
 
+// Clock
 runTimer(actions.clock.updateTime, 1000);
+
+// Weather
 runTimer(() => actions.weather.getObservations('Kokkola'), 15 * 60000);
 runTimer(() => actions.weather.getForecast('Kokkola'), 30 * 60000);
+
+// Trains
+actions.trains.getStations();
+actions.trains.getCategoryCodes();
+runTimer(() => actions.trains.getTimeTables(), 1 * 60000);

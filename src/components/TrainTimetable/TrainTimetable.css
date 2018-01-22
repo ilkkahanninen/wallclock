@@ -1,0 +1,23 @@
+.TrainTimetable__root {
+  font-size: 50px;
+}
+
+.TrainTimetable__table {
+  width: 90vw;
+  font-size: 32px;
+}
+
+.TrainTimetable__highlight {
+  color: red;
+}
+
+.TrainTimetable__time {
+  font-size: 64px;
+  font-width: 100;
+  width: 150px;
+}
+
+.TrainTimetable__condensed {
+  font-size: 60%;
+  width: calc(90vw - 300px);
+}
