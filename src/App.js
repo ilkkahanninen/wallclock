@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import SwipeableViews from 'react-swipeable-views';
 import Block from './components/Block';
-import Carousel from './components/Carousel';
 import Clock from './components/Clock';
 import CurrentTemperature from './components/CurrentTemperature';
 import Forecast from './components/Forecast';
-import { DepartureTimetable } from './components/TrainTimetable';
+import {
+  ArrivalTimetable,
+  DepartureTimetable,
+} from './components/TrainTimetable';
 
 const App = () => (
-  <div>
-    <Block height={1} />
-    <Clock />
-    <CurrentTemperature />
-    <Carousel components={[DepartureTimetable, Forecast]} />
-  </div>
+  <SwipeableViews>
+    <Fragment>
+      <Block height={1} />
+      <Clock />
+      <CurrentTemperature />
+      <Forecast />
+    </Fragment>
+    <Fragment>
+      <Clock showDate={false} />
+      <DepartureTimetable />
+    </Fragment>
+    <Fragment>
+      <Clock showDate={false} />
+      <ArrivalTimetable />
+    </Fragment>
+  </SwipeableViews>
 );
 
 export default App;

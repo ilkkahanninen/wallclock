@@ -15,7 +15,9 @@ import {
   isEmpty,
   unnest,
   uniq,
+  sort,
 } from 'ramda';
+import { compareAsc } from 'date-fns';
 
 const STATION = 'KOK';
 
@@ -40,6 +42,9 @@ const getCauses = pipe(
   uniq,
 );
 
+const compareTimetableTimes = (a, b) =>
+  compareAsc(a.timetable.scheduledTime, b.timetable.scheduledTime);
+
 const findTimeTables = findFn =>
   pipe(
     map(({ timeTableRows, ...train }) => ({
@@ -50,6 +55,7 @@ const findTimeTables = findFn =>
       causes: getCauses(timeTableRows),
     })),
     filter(prop('timetable')),
+    sort(compareTimetableTimes),
   );
 
 const getArrivals = findTimeTables(findArrival);

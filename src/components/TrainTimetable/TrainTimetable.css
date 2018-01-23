@@ -1,23 +1,54 @@
 .TrainTimetable__root {
-  font-size: 50px;
+  font-size: 36px;
 }
 
-.TrainTimetable__table {
+.TrainTimetable__title {
+  font-size: 50px;
+  margin-bottom: 30px;
+}
+
+.TrainTimetable__item {
   width: 90vw;
-  font-size: 32px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid white;
+  margin-bottom: 30px;
+}
+
+.TrainTimetable__item:last-child {
+  margin-bottom: 0;
+  border: none;
 }
 
 .TrainTimetable__highlight {
   color: red;
 }
 
-.TrainTimetable__time {
-  font-size: 64px;
+.TrainTimetable__essential {
+  font-size: 50px;
   font-width: 100;
-  width: 150px;
+  margin-bottom: 25px;
 }
 
-.TrainTimetable__condensed {
-  font-size: 60%;
-  width: calc(90vw - 300px);
+.TrainTimetable__time {
+  display: inline-block;
+  min-width: 100px;
+  margin-right: 15px;
+}
+
+.TrainTimetable__track {
+  float: right;
+  background: #222;
+  color: white;
+  border-radius: 30px;
+  width: 60px;
+  text-align: center;
+}
+
+.TrainTimetable__info {
+  margin-left: 80px;
+}
+
+.TrainTimetable__causes {
+  color: red;
+  font-size: 25px;
 }
