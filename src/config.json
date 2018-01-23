@@ -1,4 +1,7 @@
 {
+  "selfUpdater": {
+    "pollInterval": 5
+  },
   "fmi": {
     "refreshInterval": 15,
     "site": "Kokkola"
@@ -10,5 +13,9 @@
   "digiTraffic": {
     "refreshInterval": 1,
     "station": "KOK"
+  },
+  "temperature": {
+    "freezeLimit": -15,
+    "heatLimit": 25
   }
 }

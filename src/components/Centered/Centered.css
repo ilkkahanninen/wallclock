@@ -1,4 +1,4 @@
-.Block__root {
+.Centered {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,10 +7,6 @@
   box-sizing: border-box;
 }
 
-.Block__vertical {
+.Centered__vertical {
   flex-direction: row;
-}
-
-.Block__root:nth-child(even) {
-  /* background: #111; */
 }

@@ -1,7 +1,7 @@
 .Clock__time {
-  font-size: 160px;
+  font-size: 16vh;
 }
 
 .Clock__date {
-  font-size: 50px;
+  font-size: 5vh;
 }

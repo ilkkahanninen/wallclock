@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Block from '../Block';
+import Centered from '../Centered';
 import Temperature from '../Temperature';
 import './CurrentTemperature.css';
 
 export const CurrentTemperature = ({ temperature }) => (
-  <Block height={3} className="CurrentTemperature__root">
+  <Centered height="24vh" className="CurrentTemperature__root">
     <Temperature value={temperature} precision={1} />
-  </Block>
+  </Centered>
 );
 
 export default connect(state => ({

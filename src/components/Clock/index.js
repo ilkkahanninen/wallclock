@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { format, getDay, getMonth } from 'date-fns';
 import { connect } from 'react-redux';
-import Block from '../Block';
+import Centered from '../Centered';
 import './Clock.css';
 
 const weekDays = [
@@ -31,17 +31,17 @@ const months = [
 
 export const Clock = ({ time, showDate }) => (
   <Fragment>
-    <Block className="Clock__time" height={3}>
+    <Centered className="Clock__time" height="24vh">
       {format(time, 'HH:mm')}
-    </Block>
+    </Centered>
     {showDate && (
-      <Block className="Clock__date" height={1}>
+      <Centered className="Clock__date" height="8vh">
         {weekDays[getDay(time)] +
           ' ' +
           format(time, 'D.') +
           ' ' +
           months[getMonth(time)]}
-      </Block>
+      </Centered>
     )}
   </Fragment>
 );

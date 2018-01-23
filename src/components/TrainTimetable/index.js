@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { format } from 'date-fns';
-import Block from '../Block';
 import './TrainTimetable.css';
 
 const TIME_FORMAT = 'HH:mm';
 
 const TrainTimetable = ({ title, timetable, stations, categoryCodes }) => (
-  <Block height={8} className="TrainTimetable__root">
+  <div className="TrainTimetable">
     <div className="TrainTimetable__title">{title}</div>
     {timetable.slice(0, 3).map((row, index) => {
       const train = `${row.trainType} ${row.trainNumber}`;
@@ -49,7 +48,7 @@ const TrainTimetable = ({ title, timetable, stations, categoryCodes }) => (
         </div>
       );
     })}
-  </Block>
+  </div>
 );
 
 export const ArrivalTimetable = connect(state => ({

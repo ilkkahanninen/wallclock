@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import Block from './components/Block';
+import Spacer from './components/Spacer';
 import Clock from './components/Clock';
 import CurrentTemperature from './components/CurrentTemperature';
 import Forecast from './components/Forecast';
@@ -12,9 +12,11 @@ import {
 const App = () => (
   <SwipeableViews>
     <Fragment>
-      <Block height={1} />
+      <Spacer height="8vh" />
       <Clock />
+      <Spacer height="4vh" />
       <CurrentTemperature />
+      <Spacer height="4vh" />
       <Forecast />
     </Fragment>
     <Fragment>

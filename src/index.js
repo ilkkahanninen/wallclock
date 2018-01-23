@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import './index.css';
 import App from './App';
+import config from './config.json';
+import './index.css';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -24,5 +25,5 @@ if (version) {
       window.location.reload(true);
     }
   };
-  setInterval(checkForUpdate, 5 * 60000);
+  setInterval(checkForUpdate, config.selfUpdater.pollInterval * 60000);
 }

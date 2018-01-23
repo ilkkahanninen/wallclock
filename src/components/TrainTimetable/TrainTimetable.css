@@ -1,5 +1,6 @@
-.TrainTimetable__root {
+.TrainTimetable {
   font-size: 36px;
+  margin: 0 5vw;
 }
 
 .TrainTimetable__title {
@@ -10,7 +11,7 @@
 .TrainTimetable__item {
   width: 90vw;
   padding-bottom: 30px;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #444;
   margin-bottom: 30px;
 }
 
