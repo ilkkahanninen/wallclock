@@ -52,8 +52,7 @@ export default bundle({
       });
       this.dispatch('receivedObservations', observations);
     },
-    async getForecast() {
-      const cityId = '651951';
+    async getForecast(cityId) {
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/forecast?id=${cityId}&APPID=${OWM_API_KEY}`,
       );

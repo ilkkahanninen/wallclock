@@ -19,8 +19,6 @@ import {
 } from 'ramda';
 import { compareAsc } from 'date-fns';
 
-const STATION = 'KOK';
-
 const findTimeTableRow = (station, type) =>
   find(
     row =>
@@ -29,8 +27,8 @@ const findTimeTableRow = (station, type) =>
       row.actualTime == null,
   );
 
-const findArrival = findTimeTableRow(STATION, 'ARRIVAL');
-const findDeparture = findTimeTableRow(STATION, 'DEPARTURE');
+const findArrival = station => findTimeTableRow(station, 'ARRIVAL');
+const findDeparture = station => findTimeTableRow(station, 'DEPARTURE');
 
 const filterPassengerTrains = filter(propEq('trainCategory', 'Long-distance'));
 
@@ -58,8 +56,8 @@ const findTimeTables = findFn =>
     sort(compareTimetableTimes),
   );
 
-const getArrivals = findTimeTables(findArrival);
-const getDepartures = findTimeTables(findDeparture);
+const getArrivals = station => findTimeTables(findArrival(station));
+const getDepartures = station => findTimeTables(findDeparture(station));
 
 export default bundle({
   name: 'trains',
@@ -79,12 +77,17 @@ export default bundle({
       const stations = await response.json();
       this.dispatch('receivedStations', stations);
     },
-    async getTimeTables() {
+    async getTimeTables(station) {
       const response = await fetch(
-        `https://rata.digitraffic.fi/api/v1/live-trains/station/${STATION}?arriving_trains=15&departing_trains=15&include_nonstopping=false`,
+        `https://rata.digitraffic.fi/api/v1/live-trains/station/${station}?` +
+          'minutes_before_departure=1440&minutes_after_departure=15&' +
+          'minutes_before_arrival=1440&minutes_after_arrival=15',
       );
       const trains = await response.json();
-      this.dispatch('receivedTrains', filterPassengerTrains(trains));
+      this.dispatch('receivedTrains', {
+        station,
+        trains: filterPassengerTrains(trains),
+      });
     },
     async getCategoryCodes() {
       const response = await fetch(
@@ -102,9 +105,9 @@ export default bundle({
         pipe(pluck('stationName'), map(replace(' asema', '')))(stations),
       ),
     }),
-    receivedTrains: (state, trains) => ({
-      arrivals: getArrivals(trains),
-      departures: getDepartures(trains),
+    receivedTrains: (state, { station, trains }) => ({
+      arrivals: getArrivals(station)(trains),
+      departures: getDepartures(station)(trains),
     }),
     receivedCatCodes: (state, codes) => ({
       categoryCodes: zipObj(

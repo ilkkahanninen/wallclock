@@ -1,5 +1,6 @@
 import { createStore } from 'redux';
 import app from './app';
+import config from '../config.json';
 
 export const store = createStore(
   app.reducer,
@@ -17,10 +18,19 @@ const runTimer = (fn, msecs) => {
 runTimer(actions.clock.updateTime, 1000);
 
 // Weather
-runTimer(() => actions.weather.getObservations('Kokkola'), 15 * 60000);
-runTimer(() => actions.weather.getForecast('Kokkola'), 30 * 60000);
+runTimer(
+  () => actions.weather.getObservations(config.fmi.site),
+  config.fmi.refreshInterval * 60000,
+);
+runTimer(
+  () => actions.weather.getForecast(config.openWeatherMap.cityId),
+  config.openWeatherMap.refreshInterval * 60000,
+);
 
 // Trains
 actions.trains.getStations();
 actions.trains.getCategoryCodes();
-runTimer(() => actions.trains.getTimeTables(), 1 * 60000);
+runTimer(
+  () => actions.trains.getTimeTables(config.digiTraffic.station),
+  config.digiTraffic.refreshInterval * 60000,
+);
