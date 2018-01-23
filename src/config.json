@@ -1,0 +1,14 @@
+{
+  "fmi": {
+    "refreshInterval": 15,
+    "site": "Kokkola"
+  },
+  "openWeatherMap": {
+    "refreshInterval": 30,
+    "cityId": 651951
+  },
+  "digiTraffic": {
+    "refreshInterval": 1,
+    "station": "KOK"
+  }
+}
