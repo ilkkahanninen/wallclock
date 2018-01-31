@@ -1,4 +1,5 @@
 import { createStore } from 'redux';
+import { endOfMinute, differenceInMilliseconds, getMinutes } from 'date-fns';
 import app from './app';
 import config from '../config.json';
 
@@ -9,28 +10,43 @@ export const store = createStore(
 export const actions = app.getActions(store);
 
 // Init app data sources
-const runTimer = (fn, msecs) => {
+const runTimer = (fn, minutes) => {
   fn();
-  return setInterval(fn, msecs);
+  const now = new Date();
+  const startTime = differenceInMilliseconds(endOfMinute(now), now) + 100;
+  const updateIfOk = () => {
+    if (!minutes || minutes.includes(getMinutes(new Date()))) {
+      fn();
+    }
+  };
+  setTimeout(() => {
+    updateIfOk();
+    setInterval(updateIfOk, 60000);
+  }, startTime);
 };
 
+const EVERY_15_MINUTES = [0, 15, 30, 45];
+
 // Clock
-runTimer(actions.clock.updateTime, 1000);
+runTimer(actions.clock.updateTime);
 
 // Weather
 runTimer(
   () => actions.weather.getObservations(config.fmi.site),
-  config.fmi.refreshInterval * 60000,
+  EVERY_15_MINUTES,
 );
 runTimer(
   () => actions.weather.getForecast(config.openWeatherMap.cityId),
-  config.openWeatherMap.refreshInterval * 60000,
+  EVERY_15_MINUTES,
 );
 
 // Trains
 actions.trains.getStations();
 actions.trains.getCategoryCodes();
-runTimer(
-  () => actions.trains.getTimeTables(config.digiTraffic.station),
-  config.digiTraffic.refreshInterval * 60000,
-);
+runTimer(() => actions.trains.getTimeTables(config.digiTraffic.station));
+
+// Calendar
+// actions.calendar.loadCalendar(
+//   'holidays',
+//   'fi.finnish%23holiday%40group.v.calendar.google.com',
+// );

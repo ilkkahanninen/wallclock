@@ -1,8 +1,4 @@
-import { bundle } from 'dwindler';
-
-export default bundle({
-  name: 'clock',
-
+export default {
   state: {
     time: null,
   },
@@ -16,4 +12,4 @@ export default bundle({
   reducers: {
     updateTime: (state, time) => ({ ...state, time }),
   },
-});
+};

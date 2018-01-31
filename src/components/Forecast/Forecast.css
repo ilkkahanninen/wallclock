@@ -17,3 +17,29 @@
   font-weight: 100;
   font-size: 40px;
 }
+
+.Forecast__item_precipitation {
+  font-weight: 100;
+  font-size: 80%;
+  color: #2196F3;
+  margin-top: 10px;
+}
+
+.Forecast__item_wind {
+  font-weight: 100;
+  font-size: 80%;
+  color: #666;
+  margin-top: 5px;
+}
+
+.Forecast__details {
+  opacity: 0;
+  text-align: center;
+  transform: translateY(10px);
+  transition: all 500ms;
+}
+
+.Forecast__details_visible {
+  opacity: 1;
+  transform: translateY(0px);
+}

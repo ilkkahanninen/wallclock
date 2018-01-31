@@ -1,4 +1,3 @@
-import { bundle } from 'dwindler';
 import {
   find,
   map,
@@ -59,9 +58,7 @@ const findTimeTables = findFn =>
 const getArrivals = station => findTimeTables(findArrival(station));
 const getDepartures = station => findTimeTables(findDeparture(station));
 
-export default bundle({
-  name: 'trains',
-
+export default {
   state: {
     stations: {},
     categoryCodes: {},
@@ -116,4 +113,4 @@ export default bundle({
       ),
     }),
   },
-});
+};

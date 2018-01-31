@@ -1,9 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { format } from 'date-fns';
+import { format, differenceInMinutes } from 'date-fns';
 import './TrainTimetable.css';
 
 const TIME_FORMAT = 'HH:mm';
+
+const isLate = timetable =>
+  timetable.liveEstimateTime &&
+  differenceInMinutes(timetable.liveEstimateTime, timetable.scheduledTime) >= 1;
 
 const TrainTimetable = ({ title, timetable, stations, categoryCodes }) => (
   <div className="TrainTimetable">
@@ -11,11 +15,9 @@ const TrainTimetable = ({ title, timetable, stations, categoryCodes }) => (
     {timetable.slice(0, 3).map((row, index) => {
       const train = `${row.trainType} ${row.trainNumber}`;
       const scheduledTime = format(row.timetable.scheduledTime, TIME_FORMAT);
-      const estimation =
-        row.timetable.liveEstimateTime &&
-        row.timetable.liveEstimateTime !== row.timetable.scheduledTime
-          ? format(row.timetable.liveEstimateTime, TIME_FORMAT)
-          : null;
+      const estimation = isLate(row.timetable)
+        ? format(row.timetable.liveEstimateTime, TIME_FORMAT)
+        : null;
       const track = row.timetable.commercialTrack;
       const route =
         (stations[row.departureStation] || row.departureStation) +

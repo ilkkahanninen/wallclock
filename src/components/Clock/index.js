@@ -36,11 +36,13 @@ export const Clock = ({ time, showDate }) => (
     </Centered>
     {showDate && (
       <Centered className="Clock__date" height="8vh">
-        {weekDays[getDay(time)] +
-          ' ' +
-          format(time, 'D.') +
-          ' ' +
-          months[getMonth(time)]}
+        <div>
+          {weekDays[getDay(time)] +
+            ' ' +
+            format(time, 'D.') +
+            ' ' +
+            months[getMonth(time)]}
+        </div>
       </Centered>
     )}
   </Fragment>
@@ -52,4 +54,5 @@ Clock.defaultProps = {
 
 export default connect(state => ({
   time: state.clock.time,
+  holidays: state.calendar.holidays,
 }))(Clock);

@@ -1,5 +1,4 @@
 /* globals Promise, process */
-import { bundle } from 'dwindler';
 import Metolib from '@fmidev/metolib';
 import { addHours } from 'date-fns';
 import { lensPath, view, last } from 'ramda';
@@ -9,8 +8,12 @@ const OWM_API_KEY = process.env.REACT_APP_OWM_API_KEY;
 const URL = `https://data.fmi.fi/fmi-apikey/${FMI_API_KEY}/wfs`;
 const OBSERVATION = 'fmi::observations::weather::multipointcoverage';
 
-const dataLens = lensPath(['locations', 0, 'data', 't', 'timeValuePairs']);
-const getTimeValuePairs = view(dataLens);
+const dataLens = param =>
+  lensPath(['locations', 0, 'data', param, 'timeValuePairs']);
+const temperatureLens = dataLens('t');
+const windSpeedLens = dataLens('ws');
+const getTemperaturePairs = view(temperatureLens);
+const getWindSpeedPairs = view(windSpeedLens);
 
 const getData = (query, params) =>
   new Promise((resolve, reject) => {
@@ -32,12 +35,10 @@ const getData = (query, params) =>
     }
   });
 
-export default bundle({
-  name: 'weather',
-
+export default {
   state: {
     temperature: null,
-    temperatureTime: null,
+    windSpeed: null,
     forecast: null,
   },
 
@@ -45,7 +46,7 @@ export default bundle({
     async getObservations(site) {
       const now = new Date();
       const observations = await getData(OBSERVATION, {
-        requestParameter: 't',
+        requestParameter: 't,ws',
         begin: addHours(now, -1),
         end: now,
         sites: [site],
@@ -63,18 +64,17 @@ export default bundle({
 
   reducers: {
     receivedObservations: (state, observations) => {
-      const pair = last(getTimeValuePairs(observations));
-      return pair
-        ? {
-            ...state,
-            temperature: pair.value,
-            temperatureTime: new Date(pair.time),
-          }
-        : state;
+      const t = last(getTemperaturePairs(observations));
+      const ws = last(getWindSpeedPairs(observations));
+      return {
+        ...state,
+        temperature: t.value,
+        windSpeed: ws.value,
+      };
     },
     receivedForecast: (state, forecast) => ({
       ...state,
       forecast,
     }),
   },
-});
+};
