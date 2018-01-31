@@ -8,6 +8,7 @@ import {
   ArrivalTimetable,
   DepartureTimetable,
 } from '../components/TrainTimetable';
+import ErrorBoundary from '../components/ErrorBoundary';
 
 import './App.css';
 
@@ -32,19 +33,33 @@ class App extends React.Component {
       <SwipeableViews onTouchStart={this.showDetails}>
         <Fragment>
           <Spacer height="8vh" />
-          <Clock details={showDetails} />
+          <ErrorBoundary>
+            <Clock details={showDetails} />
+          </ErrorBoundary>
           <Spacer height="4vh" />
-          <CurrentTemperature details={showDetails} />
+          <ErrorBoundary>
+            <CurrentTemperature details={showDetails} />
+          </ErrorBoundary>
           <Spacer height="4vh" />
-          <Forecast details={showDetails} />
+          <ErrorBoundary>
+            <Forecast details={showDetails} />
+          </ErrorBoundary>
         </Fragment>
         <Fragment>
-          <Clock showDate={false} />
-          <DepartureTimetable />
+          <ErrorBoundary>
+            <Clock showDate={false} />
+          </ErrorBoundary>
+          <ErrorBoundary>
+            <DepartureTimetable />
+          </ErrorBoundary>
         </Fragment>
         <Fragment>
-          <Clock showDate={false} />
-          <ArrivalTimetable />
+          <ErrorBoundary>
+            <Clock showDate={false} />
+          </ErrorBoundary>
+          <ErrorBoundary>
+            <ArrivalTimetable />
+          </ErrorBoundary>
         </Fragment>
       </SwipeableViews>
     );

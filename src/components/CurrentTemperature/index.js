@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import Centered from '../Centered';
 import Temperature from '../Temperature';
-import windName from '../../utils/windName';
 import './CurrentTemperature.css';
 
-export const CurrentTemperature = ({ temperature, windSpeed, details }) => (
+export const CurrentTemperature = ({ temperature, windSpeedText, details }) => (
   <Centered height="24vh" className="CurrentTemperature__root">
     <Temperature value={temperature} precision={1} />
     <div
@@ -15,12 +14,12 @@ export const CurrentTemperature = ({ temperature, windSpeed, details }) => (
         CurrentTemperature__wind_visible: details,
       })}
     >
-      {windName(windSpeed)}
+      {windSpeedText}
     </div>
   </Centered>
 );
 
 export default connect(state => ({
   temperature: state.weather.temperature,
-  windSpeed: state.weather.windSpeed,
+  windSpeedText: state.weather.windSpeedText,
 }))(CurrentTemperature);

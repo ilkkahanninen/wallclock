@@ -7,7 +7,6 @@ export default {
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/forecast?id=${cityId}&APPID=${OWM_API_KEY}`,
     );
-    const forecast = await response.json();
-    return forecast.list;
+    return response.json();
   },
 };
