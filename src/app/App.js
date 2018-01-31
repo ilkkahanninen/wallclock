@@ -1,13 +1,15 @@
 import React, { Fragment } from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import Spacer from './components/Spacer';
-import Clock from './components/Clock';
-import CurrentTemperature from './components/CurrentTemperature';
-import Forecast from './components/Forecast';
+import Spacer from '../components/Spacer';
+import Clock from '../components/Clock';
+import CurrentTemperature from '../components/CurrentTemperature';
+import Forecast from '../components/Forecast';
 import {
   ArrivalTimetable,
   DepartureTimetable,
-} from './components/TrainTimetable';
+} from '../components/TrainTimetable';
+
+import './App.css';
 
 class App extends React.Component {
   state = {
