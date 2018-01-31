@@ -68,30 +68,33 @@ export default {
 
   actions: {
     async getStations() {
-      const response = await fetch(
-        'https://rata.digitraffic.fi/api/v1/metadata/stations',
+      this.dispatch(
+        'receivedStations',
+        await this.services.digiTraffic.get('/metadata/stations'),
       );
-      const stations = await response.json();
-      this.dispatch('receivedStations', stations);
     },
     async getTimeTables(station) {
-      const response = await fetch(
-        `https://rata.digitraffic.fi/api/v1/live-trains/station/${station}?` +
-          'minutes_before_departure=1440&minutes_after_departure=15&' +
-          'minutes_before_arrival=1440&minutes_after_arrival=15',
+      const trains = await this.services.digiTraffic.get(
+        `/live-trains/station/${station}`,
+        {
+          minutes_before_departure: 1440,
+          minutes_after_departure: 15,
+          minutes_before_arrival: 1440,
+          minutes_after_arrival: 15,
+        },
       );
-      const trains = await response.json();
       this.dispatch('receivedTrains', {
         station,
         trains: filterPassengerTrains(trains),
       });
     },
     async getCategoryCodes() {
-      const response = await fetch(
-        'https://rata.digitraffic.fi/api/v1/metadata/detailed-cause-category-codes',
+      this.dispatch(
+        'receivedCatCodes',
+        await this.services.digiTraffic.get(
+          '/metadata/detailed-cause-category-codes',
+        ),
       );
-      const codes = await response.json();
-      this.dispatch('receivedCatCodes', codes);
     },
   },
 

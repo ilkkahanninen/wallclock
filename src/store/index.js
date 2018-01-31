@@ -1,7 +1,11 @@
+import { bundle } from 'dwindler';
 import { createStore } from 'redux';
 import { endOfMinute, differenceInMilliseconds, getMinutes } from 'date-fns';
-import app from './app';
+import root from './app';
+import services from './services';
 import config from '../config.json';
+
+const app = bundle(root, { services });
 
 export const store = createStore(
   app.reducer,
